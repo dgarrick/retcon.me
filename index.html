@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retcon Labs</title>
+    <style>
+        @font-face {
+            font-family: 'ZXX-Bold';
+            src: url('fonts/zxx-bold-regular.ttf') format('truetype');
+        }
+        
+        @font-face {
+            font-family: 'ZXX-Camo';
+            src: url('fonts/zxx-camo.ttf') format('truetype');
+        }
+        
+        @font-face {
+            font-family: 'ZXX-Noise';
+            src: url('fonts/zxx-noise.ttf') format('truetype');
+        }
+        
+        @font-face {
+            font-family: 'ZXX-Sans';
+            src: url('fonts/zxx-sans.ttf') format('truetype');
+        }
+        
+        @font-face {
+            font-family: 'ZXX-Xed';
+            src: url('fonts/zxx-xed.ttf') format('truetype');
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+        }
+        
+        h1 {
+            color: #fff;
+            font-size: 3rem;
+            margin: 0;
+        }
+        
+        .letter-r1 { font-family: 'ZXX-Bold', sans-serif; }
+        .letter-e1 { font-family: 'ZXX-Camo', sans-serif; }
+        .letter-t { font-family: 'ZXX-Noise', sans-serif; }
+        .letter-c { font-family: 'ZXX-Sans', sans-serif; }
+        .letter-o { font-family: 'ZXX-Xed', sans-serif; }
+        .letter-n { font-family: 'ZXX-Bold', sans-serif; }
+        .letter-space { font-family: 'ZXX-Camo', sans-serif; }
+        .letter-l { font-family: 'ZXX-Noise', sans-serif; }
+        .letter-a { font-family: 'ZXX-Sans', sans-serif; }
+        .letter-b { font-family: 'ZXX-Xed', sans-serif; }
+        .letter-s { font-family: 'ZXX-Bold', sans-serif; }
+    </style>
+</head>
+<body>
+    <h1>
+        <span class="letter-r1">R</span><span class="letter-e1">e</span><span class="letter-t">t</span><span class="letter-c">c</span><span class="letter-o">o</span><span class="letter-n">n</span><span class="letter-space"> </span><span class="letter-l">L</span><span class="letter-a">a</span><span class="letter-b">b</span><span class="letter-s">s</span>
+    </h1>
+
+    <script>
+        const fonts = ['ZXX-Bold', 'ZXX-Camo', 'ZXX-Noise', 'ZXX-Sans', 'ZXX-Xed'];
+        
+        function getRandomFont() {
+            return fonts[Math.floor(Math.random() * fonts.length)];
+        }
+        
+        function getRandomInterval() {
+            return Math.random() * 2000 + 1000; // 1-3 seconds in milliseconds
+        }
+        
+        function changeLetterFont(element) {
+            const newFont = getRandomFont();
+            element.style.fontFamily = `'${newFont}', sans-serif`;
+            
+            // Set next random timer for this letter
+            setTimeout(() => changeLetterFont(element), getRandomInterval());
+        }
+        
+        // Initialize random font changes for all letters except space
+        document.addEventListener('DOMContentLoaded', function() {
+            const letterSpans = document.querySelectorAll('h1 span:not(.letter-space)');
+            
+            letterSpans.forEach(span => {
+                // Start with a random initial delay
+                setTimeout(() => changeLetterFont(span), getRandomInterval());
+            });
+        });
+    </script>
+</body>
+</html>
